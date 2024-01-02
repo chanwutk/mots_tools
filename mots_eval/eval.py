@@ -1,7 +1,6 @@
 import pycocotools.mask as rletools
-import sys
-from mots_common.io import load_seqmap, load_sequences
-from mots_eval.MOTS_metrics import compute_MOTS_metrics
+from ..mots_common.io import load_seqmap, load_sequences
+from .MOTS_metrics import compute_MOTS_metrics
 
 
 IGNORE_CLASS = 10
@@ -29,15 +28,3 @@ def run_eval(results_folder, gt_folder, seqmap_filename):
   print("Evaluate class: Pedestrians")
   results_ped = evaluate_class(gt, results, max_frames, 2)
 
-
-
-if __name__ == "__main__":
-  if len(sys.argv) != 4:
-    print("Usage: python eval.py results_folder gt_folder seqmap")
-    sys.exit(1)
-
-  results_folder = sys.argv[1]
-  gt_folder = sys.argv[2]
-  seqmap_filename = sys.argv[3]
-
-  run_eval(results_folder, gt_folder, seqmap_filename)
